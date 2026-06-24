@@ -1,17 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { CheckCircle2, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { AlertCircle, CheckCircle2, Loader2, MapPin, MessageCircle, Phone, Send, X } from "lucide-react";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 import { COMPANY, telLink, whatsappLink } from "@/lib/utils";
 import { services } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
+
+type Toast = { type: "success" | "error"; message: string } | null;
 
 type Errors = Partial<Record<"name" | "phone" | "email" | "location" | "service" | "message", string>>;
 
 export function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState<Toast>(null);
   const [errors, setErrors] = useState<Errors>({});
   const [values, setValues] = useState({
     name: "",
@@ -34,17 +39,78 @@ export function Contact() {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) e.email = "Enter a valid email address.";
     if (values.location.trim().length < 2) e.location = "Please enter your location.";
     if (!values.service) e.service = "Please select a service.";
-    if (values.message.trim().length < 10) e.message = "Tell us a little more (10+ characters).";
     return e;
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 5000);
+    return () => clearTimeout(t);
+  }, [toast]);
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
+
     const found = validate();
     if (Object.keys(found).length) {
       setErrors(found);
+      setToast({ type: "error", message: "Please fix the highlighted fields and try again." });
       return;
     }
+
+    setSubmitting(true);
+    setToast(null);
+
+    const payload = {
+      name: values.name.trim(),
+      phone: values.phone.trim(),
+      email: values.email.trim(),
+      location: values.location.trim(),
+      service: values.service,
+      message: values.message.trim() || null,
+    };
+
+    try {
+      const { data, error, status, statusText } = await supabase
+        .from("leads")
+        .insert(payload);
+
+      setSubmitting(false);
+
+      if (error) {
+        console.error("Supabase insert failed");
+        console.error("status:", status, statusText);
+        console.error("code:", error.code);
+        console.error("message:", error.message);
+        console.error("details:", error.details);
+        console.error("hint:", error.hint);
+        console.error("payload:", payload);
+        setToast({
+          type: "error",
+          message:
+            process.env.NODE_ENV === "development"
+              ? `Insert failed: [${error.code || status}] ${error.message || statusText || "Unknown error"}`
+              : "Something went wrong while sending your request. Please try again or WhatsApp us.",
+        });
+        return;
+      }
+
+      console.log("Supabase insert OK:", data);
+    } catch (err) {
+      setSubmitting(false);
+      console.error("Insert threw an exception:", err);
+      setToast({
+        type: "error",
+        message:
+          process.env.NODE_ENV === "development"
+            ? `Exception: ${err instanceof Error ? err.message : String(err)}`
+            : "Something went wrong while sending your request. Please try again or WhatsApp us.",
+      });
+      return;
+    }
+
+    setToast({ type: "success", message: "Request sent! We'll be in touch shortly." });
     setSubmitted(true);
   };
 
@@ -70,8 +136,7 @@ export function Contact() {
               {[
                 { icon: Phone, label: "Call us", value: COMPANY.phoneDisplay, href: telLink },
                 { icon: MessageCircle, label: "WhatsApp", value: "Chat instantly", href: whatsappLink() },
-                { icon: Mail, label: "Email", value: COMPANY.email, href: `mailto:${COMPANY.email}` },
-                { icon: MapPin, label: "Office", value: COMPANY.address, href: "#" },
+                { icon: MapPin, label: "Service Area", value: COMPANY.address, href: "#" },
               ].map((c, i) => (
                 <Reveal key={c.label} delay={i}>
                   <a
@@ -128,7 +193,7 @@ export function Contact() {
                       <label htmlFor="phone" className="mb-1.5 block text-xs font-medium text-muted-foreground">
                         Phone
                       </label>
-                      <input id="phone" value={values.phone} onChange={(e) => update("phone", e.target.value)} className={fieldClass("phone")} placeholder="+92 300 1234567" />
+                      <input id="phone" value={values.phone} onChange={(e) => update("phone", e.target.value)} className={fieldClass("phone")} placeholder="0312 2007495" />
                       {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
                     </div>
                   </div>
@@ -173,8 +238,20 @@ export function Contact() {
                     {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message}</p>}
                   </div>
 
-                  <button type="submit" className="btn-primary w-full">
-                    <Send className="h-4 w-4" /> Send Request
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70"
+                  >
+                    {submitting ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" /> Send Request
+                      </>
+                    )}
                   </button>
                 </form>
               )}
@@ -182,6 +259,42 @@ export function Contact() {
           </Reveal>
         </div>
       </div>
+
+      {/* Toast */}
+      <AnimatePresence>
+        {toast && (
+          <motion.div
+            initial={{ opacity: 0, y: 24, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 24, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 280, damping: 22 }}
+            role="status"
+            aria-live="polite"
+            className="glass-strong fixed bottom-6 left-1/2 z-[60] flex w-[min(92vw,26rem)] -translate-x-1/2 items-start gap-3 rounded-2xl p-4 shadow-soft"
+          >
+            <span
+              className={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full text-white ${
+                toast.type === "success" ? "bg-brand-gradient" : "bg-red-500"
+              }`}
+            >
+              {toast.type === "success" ? (
+                <CheckCircle2 className="h-5 w-5" />
+              ) : (
+                <AlertCircle className="h-5 w-5" />
+              )}
+            </span>
+            <p className="flex-1 text-sm font-medium leading-snug">{toast.message}</p>
+            <button
+              type="button"
+              aria-label="Dismiss notification"
+              onClick={() => setToast(null)}
+              className="text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

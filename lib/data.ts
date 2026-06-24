@@ -20,42 +20,46 @@ export type Service = {
   image: string;
 };
 
+// Keyword-based, always-relevant photos that reliably resolve.
+const kwImg = (keywords: string, lock: number) =>
+  `https://loremflickr.com/800/600/${keywords}?lock=${lock}`;
+
 export const services: Service[] = [
   {
     title: "Cockroach Control",
     description: "Gel baiting and residual treatments that eliminate colonies at the source and stop reinfestation.",
     icon: Bug,
-    image: "https://images.unsplash.com/photo-1632215861408-d0a3a4a3a3c1?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("cockroach,insect", 11),
   },
   {
     title: "Bed Bug Treatment",
     description: "Heat and targeted chemical protocols that wipe out bed bugs and their eggs from every crevice.",
     icon: BedDouble,
-    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("bedbug,insect", 12),
   },
   {
     title: "Lizard Control",
     description: "Safe repellent and exclusion techniques to keep walls, kitchens and ceilings lizard-free.",
     icon: Worm,
-    image: "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("lizard,gecko", 13),
   },
   {
     title: "Mosquito Control",
     description: "Larvicidal fogging and breeding-site management for indoor and outdoor mosquito protection.",
     icon: Bug,
-    image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("mosquito,insect", 14),
   },
   {
     title: "Rodent Control",
     description: "Smart baiting, trapping and proofing that removes rats and mice and seals their entry points.",
     icon: Rat,
-    image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("rat,rodent", 15),
   },
   {
     title: "Termite Treatment",
     description: "Anti-termite soil treatment and baiting systems that protect your structure for years.",
     icon: Trees,
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=70",
+    image: kwImg("termite,insect", 16),
   },
   {
     title: "General Pest Control",
@@ -98,14 +102,14 @@ export const services: Service[] = [
 export type Pest = { name: string; image: string };
 
 export const pests: Pest[] = [
-  { name: "Cockroach", image: "https://images.unsplash.com/photo-1632215861408-d0a3a4a3a3c1?auto=format&fit=crop&w=700&q=70" },
-  { name: "Bed Bug", image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=70" },
-  { name: "Lizard", image: "https://images.unsplash.com/photo-1504450874802-0ba2bcd9b5ae?auto=format&fit=crop&w=700&q=70" },
-  { name: "Rat", image: "https://images.unsplash.com/photo-1425082661705-1834bfd09dca?auto=format&fit=crop&w=700&q=70" },
-  { name: "Mosquito", image: "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=700&q=70" },
-  { name: "Ant", image: "https://images.unsplash.com/photo-1610218763862-2f3b6a2a4f3a?auto=format&fit=crop&w=700&q=70" },
-  { name: "Spider", image: "https://images.unsplash.com/photo-1568393691080-d016a4e0a2c7?auto=format&fit=crop&w=700&q=70" },
-  { name: "Termite", image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=70" },
+  { name: "Cockroach", image: kwImg("cockroach,insect", 21) },
+  { name: "Bed Bug", image: kwImg("bedbug,insect", 22) },
+  { name: "Lizard", image: kwImg("lizard,gecko", 23) },
+  { name: "Rat", image: kwImg("rat,rodent", 24) },
+  { name: "Mosquito", image: kwImg("mosquito,insect", 25) },
+  { name: "Ant", image: kwImg("ant,insect", 26) },
+  { name: "Spider", image: kwImg("spider,web", 27) },
+  { name: "Termite", image: kwImg("termite,insect", 28) },
 ];
 
 export const trustBadges = [
@@ -177,15 +181,21 @@ export const testimonials = [
 ];
 
 export const serviceAreas = [
-  "Karachi",
-  "Lahore",
-  "Islamabad",
-  "Rawalpindi",
-  "Faisalabad",
-  "Multan",
-  "Hyderabad",
-  "Peshawar",
-  "Quetta",
+  "Nazimabad",
+  "North Nazimabad",
+  "Gulshan-e-Iqbal",
+  "Scheme 33",
+  "DHA",
+  "Clifton",
+  "Gulistan-e-Johar",
+  "Federal B Area",
+  "Malir",
+  "Korangi",
+  "PECHS",
+  "Saddar",
+  "North Karachi",
+  "Bahadurabad",
+  "Liaquatabad",
 ];
 
 export const faqs = [

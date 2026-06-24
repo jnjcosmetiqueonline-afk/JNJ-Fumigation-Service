@@ -8,11 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 export const COMPANY = {
   name: "JNJ Fumigation Services",
   shortName: "JNJ",
-  phone: "+923001234567",
-  phoneDisplay: "+92 300 1234567",
-  whatsapp: "923001234567",
-  email: "info@jnjfumigation.com",
-  address: "Business Bay, Karachi, Pakistan",
+  phone: "+923122007495",
+  phoneDisplay: "0312 2007495",
+  whatsapp: "923122007495",
+  address: "Karachi, Pakistan",
   url: "https://jnjfumigation.com",
 };
 

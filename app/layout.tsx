@@ -74,15 +74,17 @@ const jsonLd = {
   image: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1200&q=75",
   url: COMPANY.url,
   telephone: COMPANY.phone,
-  email: COMPANY.email,
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Business Bay",
     addressLocality: "Karachi",
+    addressRegion: "Sindh",
     addressCountry: "PK",
   },
-  areaServed: ["Karachi", "Lahore", "Islamabad", "Rawalpindi", "Faisalabad", "Multan"],
+  areaServed: {
+    "@type": "City",
+    name: "Karachi",
+  },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { Menu, Phone, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { COMPANY, cn, telLink } from "@/lib/utils";
 
@@ -39,9 +40,14 @@ export function Navbar() {
           )}
         >
           <a href="#home" className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient shadow-glow">
-              <ShieldCheck className="h-5 w-5 text-white" />
-            </span>
+            <Image
+              src="/logo.png"
+              alt="JNJ Fumigation Services logo"
+              width={44}
+              height={44}
+              priority
+              className="h-10 w-10 rounded-full ring-1 ring-brand-500/20 sm:h-11 sm:w-11"
+            />
             <span className="font-display text-lg font-bold tracking-tight">
               JNJ<span className="text-gradient"> Fumigation</span>
             </span>

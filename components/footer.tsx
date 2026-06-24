@@ -1,4 +1,5 @@
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, ShieldCheck, Twitter } from "lucide-react";
+import Image from "next/image";
+import { Facebook, Instagram, Linkedin, MapPin, Phone, Twitter } from "lucide-react";
 import { COMPANY, telLink, whatsappLink } from "@/lib/utils";
 
 const quickLinks = [
@@ -35,9 +36,13 @@ export function Footer() {
           {/* Brand */}
           <div>
             <a href="#home" className="flex items-center gap-2.5">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-brand-gradient shadow-glow">
-                <ShieldCheck className="h-5 w-5 text-white" />
-              </span>
+              <Image
+                src="/logo.png"
+                alt="JNJ Fumigation Services logo"
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full ring-1 ring-brand-500/20"
+              />
               <span className="font-display text-lg font-bold tracking-tight">
                 JNJ<span className="text-gradient"> Fumigation</span>
               </span>
@@ -98,8 +103,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href={`mailto:${COMPANY.email}`} className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-brand-500">
-                  <Mail className="h-4 w-4 text-brand-500" /> {COMPANY.email}
+                <a href={whatsappLink()} target="_blank" rel="noopener" className="flex items-center gap-3 text-sm text-muted-foreground transition-colors hover:text-brand-500">
+                  <Phone className="h-4 w-4 text-brand-500" /> WhatsApp: {COMPANY.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-muted-foreground">

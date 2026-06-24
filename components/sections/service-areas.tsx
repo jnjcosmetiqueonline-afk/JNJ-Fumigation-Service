@@ -12,8 +12,8 @@ export function ServiceAreas() {
       <div className="container-px">
         <SectionHeading
           eyebrow="Service Areas"
-          title={<>Protecting cities <span className="text-gradient">nationwide</span></>}
-          subtitle="Fast, reliable pest control and fumigation across major cities — with same-day slots available."
+          title={<>Proudly serving <span className="text-gradient">all of Karachi</span></>}
+          subtitle="Fast, reliable pest control and fumigation across every Karachi neighbourhood — with same-day slots available."
         />
 
         <div className="mt-14 flex flex-wrap justify-center gap-4">
