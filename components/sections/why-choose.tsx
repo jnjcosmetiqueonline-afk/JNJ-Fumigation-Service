@@ -23,7 +23,7 @@ export function WhyChoose() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               {whyChoose.map((w, i) => (
                 <Reveal key={w.title} delay={i}>
-                  <div className="glass flex items-start gap-3 rounded-2xl p-4">
+                  <div className="glow-card flex items-start gap-3 rounded-2xl p-4">
                     <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-brand-gradient text-white">
                       <Check className="h-4 w-4" />
                     </span>

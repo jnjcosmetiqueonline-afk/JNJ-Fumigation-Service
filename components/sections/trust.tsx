@@ -18,7 +18,7 @@ export function Trust() {
               <Reveal key={b.title} delay={i}>
                 <motion.div
                   whileHover={{ y: -6 }}
-                  className="glass group flex items-start gap-4 rounded-3xl p-6 transition-shadow hover:shadow-glow"
+                  className="glow-card group flex items-start gap-4 rounded-3xl p-6"
                 >
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white shadow-glow transition-transform group-hover:scale-110">
                     <Icon className="h-6 w-6" />

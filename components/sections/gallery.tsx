@@ -21,7 +21,7 @@ export function Gallery() {
               <motion.div
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 280, damping: 20 }}
-                className="group relative aspect-square overflow-hidden rounded-3xl"
+                className="group glow-card relative aspect-square overflow-hidden rounded-3xl"
               >
                 <img
                   src={p.image}

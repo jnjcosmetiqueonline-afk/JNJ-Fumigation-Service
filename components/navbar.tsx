@@ -42,14 +42,14 @@ export function Navbar() {
           <a href="#home" className="flex items-center gap-2.5">
             <Image
               src="/logo.png"
-              alt="JNJ Fumigation Services logo"
+              alt="JNJ Fumigation Service logo"
               width={44}
               height={44}
               priority
               className="h-10 w-10 rounded-full ring-1 ring-brand-500/20 sm:h-11 sm:w-11"
             />
             <span className="font-display text-lg font-bold tracking-tight">
-              JNJ<span className="text-gradient"> Fumigation</span>
+              JNJ<span className="text-gradient"> Fumigation Service</span>
             </span>
           </a>
 

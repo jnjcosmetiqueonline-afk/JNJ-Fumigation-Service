@@ -38,13 +38,13 @@ export function Footer() {
             <a href="#home" className="flex items-center gap-2.5">
               <Image
                 src="/logo.png"
-                alt="JNJ Fumigation Services logo"
+                alt="JNJ Fumigation Service logo"
                 width={48}
                 height={48}
                 className="h-12 w-12 rounded-full ring-1 ring-brand-500/20"
               />
               <span className="font-display text-lg font-bold tracking-tight">
-                JNJ<span className="text-gradient"> Fumigation</span>
+                JNJ<span className="text-gradient"> Fumigation Service</span>
               </span>
             </a>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">

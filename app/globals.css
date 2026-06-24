@@ -80,6 +80,110 @@
     backdrop-filter: blur(28px) saturate(180%);
   }
 
+  /* Hero-derived liquid-glass card: layered depth, soft reflection,
+     premium illuminated border and smooth hover glow. Works in both themes. */
+  .glow-card {
+    position: relative;
+    isolation: isolate;
+    background: rgba(var(--glass-bg), calc(var(--glass-alpha) + 0.05));
+    border: 1px solid rgba(var(--glass-border), calc(var(--glass-border-alpha) + 0.02));
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 10px 40px -12px rgba(0, 0, 0, 0.18);
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.45s ease;
+  }
+
+  /* Premium glass border with a soft top-left reflection + green accent. */
+  .glow-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.28),
+      rgba(255, 255, 255, 0) 38%,
+      rgba(0, 230, 118, 0) 62%,
+      rgba(0, 230, 118, 0.28)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0.55;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+
+  .glow-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 200, 83, 0.4);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.14),
+      0 18px 50px -16px rgba(0, 0, 0, 0.25),
+      0 0 50px -10px rgba(0, 200, 83, 0.45);
+  }
+
+  .glow-card:hover::after {
+    opacity: 1;
+  }
+
+  /* Service card: balanced green glow across the whole card (not just one
+     corner), a 1px neon-green border with subtle glow, and a faint watermark
+     layer behind the content. Readability is preserved in both themes. */
+  .service-card {
+    position: relative;
+    isolation: isolate;
+    border: 1px solid rgba(0, 230, 118, 0.35);
+    background-color: rgb(var(--glass-bg) / calc(var(--glass-alpha) + 0.07));
+    background-image:
+      linear-gradient(160deg, rgba(0, 200, 83, 0.12), rgba(0, 200, 83, 0) 45%),
+      radial-gradient(135% 95% at 50% 115%, rgba(0, 230, 118, 0.14), transparent 60%);
+    -webkit-backdrop-filter: blur(20px) saturate(165%);
+    backdrop-filter: blur(20px) saturate(165%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 22px -8px rgba(0, 200, 83, 0.4),
+      0 14px 44px -18px rgba(0, 0, 0, 0.5);
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.45s ease;
+  }
+
+  .service-card:hover {
+    border-color: rgba(0, 230, 118, 0.6);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      0 0 34px -8px rgba(0, 200, 83, 0.55),
+      0 20px 52px -18px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Low-opacity, blurred watermark image sitting behind the card content. */
+  .service-watermark {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    opacity: 0.07;
+    filter: blur(3px) saturate(120%);
+    pointer-events: none;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(120deg, #00e676, #00c853 50%, #009624);
@@ -115,6 +219,25 @@
 
   .eyebrow {
     @apply inline-flex items-center gap-2 rounded-full border border-brand-500/25 bg-brand-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-400;
+  }
+
+  /* Visible green border for form inputs, with a soft focus glow. */
+  .input-bordered {
+    border: 1.5px solid rgba(0, 200, 83, 0.3);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .input-bordered:focus {
+    border-color: rgba(0, 200, 83, 0.7);
+    box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.12);
+  }
+
+  /* Faint, full-page grid watermark for blank background areas. */
+  .site-grid {
+    background-image: linear-gradient(rgba(0, 200, 83, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 200, 83, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black, transparent 95%);
+    mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black, transparent 95%);
   }
 
   .grid-glow::before {

@@ -71,7 +71,7 @@ export default async function AdminDashboard() {
           { label: "New", value: newCount },
           { label: "Today", value: todayCount },
         ].map((s) => (
-          <div key={s.label} className="glass rounded-2xl p-5">
+          <div key={s.label} className="glow-card rounded-2xl p-5">
             <p className="font-display text-3xl font-bold text-gradient">{s.value}</p>
             <p className="mt-1 text-sm text-muted-foreground">{s.label}</p>
           </div>
@@ -93,7 +93,7 @@ export default async function AdminDashboard() {
 
       {/* Empty state */}
       {!error && leads.length === 0 && (
-        <div className="glass mt-8 flex flex-col items-center justify-center rounded-3xl p-16 text-center">
+        <div className="glow-card mt-8 flex flex-col items-center justify-center rounded-3xl p-16 text-center">
           <span className="grid h-14 w-14 place-items-center rounded-2xl bg-brand-500/15 text-brand-500">
             <Inbox className="h-7 w-7" />
           </span>
@@ -148,7 +148,7 @@ export default async function AdminDashboard() {
           {/* Mobile cards */}
           <div className="mt-8 space-y-4 lg:hidden">
             {leads.map((l) => (
-              <div key={l.id} className="glass rounded-2xl p-5">
+              <div key={l.id} className="glow-card rounded-2xl p-5">
                 <div className="flex items-center justify-between">
                   <p className="font-display font-semibold">{l.name}</p>
                   <span className="rounded-full bg-brand-500/15 px-2.5 py-1 text-xs font-semibold text-brand-600 dark:text-brand-400">

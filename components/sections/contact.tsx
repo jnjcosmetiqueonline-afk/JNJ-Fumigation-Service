@@ -115,7 +115,7 @@ export function Contact() {
   };
 
   const fieldClass = (k: keyof Errors) =>
-    `w-full rounded-2xl bg-transparent px-4 py-3 text-sm outline-none transition-colors glass focus:border-brand-500/60 ${
+    `w-full rounded-2xl bg-transparent px-4 py-3 text-sm outline-none glass input-bordered ${
       errors[k] ? "!border-red-500/60" : ""
     }`;
 
@@ -193,7 +193,7 @@ export function Contact() {
                       <label htmlFor="phone" className="mb-1.5 block text-xs font-medium text-muted-foreground">
                         Phone
                       </label>
-                      <input id="phone" value={values.phone} onChange={(e) => update("phone", e.target.value)} className={fieldClass("phone")} placeholder="0312 2007495" />
+                      <input id="phone" value={values.phone} onChange={(e) => update("phone", e.target.value)} className={fieldClass("phone")} placeholder="0312 22007498" />
                       {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
                     </div>
                   </div>

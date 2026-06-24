@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SiteBackground } from "@/components/site-background";
 import { COMPANY } from "@/lib/utils";
 import "./globals.css";
 
@@ -17,8 +18,8 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(COMPANY.url),
   title: {
-    default: "JNJ Fumigation Services | Professional Pest Control & Fumigation",
-    template: "%s | JNJ Fumigation Services",
+    default: "JNJ Fumigation Service | Professional Pest Control & Fumigation",
+    template: "%s | JNJ Fumigation Service",
   },
   description:
     "JNJ Fumigation Services provides safe, effective and guaranteed pest control and fumigation for homes, offices, restaurants, warehouses and industries. Book a free inspection today.",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: COMPANY.url,
     siteName: COMPANY.name,
-    title: "JNJ Fumigation Services | Professional Pest Control & Fumigation",
+    title: "JNJ Fumigation Service | Professional Pest Control & Fumigation",
     description:
       "Safe, effective and guaranteed pest control & fumigation for homes and businesses. Certified experts, eco-friendly chemicals, 24/7 support.",
     images: [
@@ -48,13 +49,13 @@ export const metadata: Metadata = {
         url: "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1200&q=75",
         width: 1200,
         height: 630,
-        alt: "JNJ Fumigation Services",
+        alt: "JNJ Fumigation Service",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "JNJ Fumigation Services | Professional Pest Control & Fumigation",
+    title: "JNJ Fumigation Service | Professional Pest Control & Fumigation",
     description:
       "Safe, effective and guaranteed pest control & fumigation for homes and businesses.",
     images: ["https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1200&q=75"],
@@ -103,6 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <SiteBackground />
           {children}
         </ThemeProvider>
       </body>

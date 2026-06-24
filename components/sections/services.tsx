@@ -23,8 +23,15 @@ export function Services() {
               <motion.article
                 whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="group glass relative flex h-full flex-col overflow-hidden rounded-3xl transition-shadow hover:shadow-glow"
+                className="group service-card relative flex h-full flex-col overflow-hidden rounded-3xl"
               >
+                <img
+                  src={s.image}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="service-watermark"
+                />
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={s.image}

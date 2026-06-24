@@ -180,23 +180,7 @@ export const testimonials = [
   },
 ];
 
-export const serviceAreas = [
-  "Nazimabad",
-  "North Nazimabad",
-  "Gulshan-e-Iqbal",
-  "Scheme 33",
-  "DHA",
-  "Clifton",
-  "Gulistan-e-Johar",
-  "Federal B Area",
-  "Malir",
-  "Korangi",
-  "PECHS",
-  "Saddar",
-  "North Karachi",
-  "Bahadurabad",
-  "Liaquatabad",
-];
+export const serviceAreas = ["All Karachi"];
 
 export const faqs = [
   {

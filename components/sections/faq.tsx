@@ -24,7 +24,7 @@ export function Faq() {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i}>
-                <div className="glass overflow-hidden rounded-3xl">
+                <div className="glow-card overflow-hidden rounded-3xl">
                   <button
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
