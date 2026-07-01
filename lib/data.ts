@@ -20,46 +20,42 @@ export type Service = {
   image: string;
 };
 
-// Keyword-based, always-relevant photos that reliably resolve.
-const kwImg = (keywords: string, lock: number) =>
-  `https://loremflickr.com/800/600/${keywords}?lock=${lock}`;
-
 export const services: Service[] = [
   {
     title: "Cockroach Control",
     description: "Gel baiting and residual treatments that eliminate colonies at the source and stop reinfestation.",
     icon: Bug,
-    image: kwImg("cockroach,insect", 11),
+    image: "https://images.unsplash.com/photo-1611773236409-f3ee161007a1?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "Bed Bug Treatment",
     description: "Heat and targeted chemical protocols that wipe out bed bugs and their eggs from every crevice.",
     icon: BedDouble,
-    image: kwImg("bedbug,insect", 12),
+    image: "https://images.unsplash.com/photo-1729294428628-6d97177fd053?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "Lizard Control",
     description: "Safe repellent and exclusion techniques to keep walls, kitchens and ceilings lizard-free.",
     icon: Worm,
-    image: kwImg("lizard,gecko", 13),
+    image: "https://images.unsplash.com/photo-1513039763578-cf2c1c5f8750?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "Mosquito Control",
     description: "Larvicidal fogging and breeding-site management for indoor and outdoor mosquito protection.",
     icon: Bug,
-    image: kwImg("mosquito,insect", 14),
+    image: "https://images.unsplash.com/photo-1707943768453-7850f916ebde?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "Rodent Control",
     description: "Smart baiting, trapping and proofing that removes rats and mice and seals their entry points.",
     icon: Rat,
-    image: kwImg("rat,rodent", 15),
+    image: "https://images.unsplash.com/photo-1718345641213-80cfe1424084?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "Termite Treatment",
     description: "Anti-termite soil treatment and baiting systems that protect your structure for years.",
     icon: Trees,
-    image: kwImg("termite,insect", 16),
+    image: "https://images.unsplash.com/photo-1612960891902-b525d250aa89?auto=format&fit=crop&w=800&q=70",
   },
   {
     title: "General Pest Control",
@@ -102,14 +98,14 @@ export const services: Service[] = [
 export type Pest = { name: string; image: string };
 
 export const pests: Pest[] = [
-  { name: "Cockroach", image: kwImg("cockroach,insect", 21) },
-  { name: "Bed Bug", image: kwImg("bedbug,insect", 22) },
-  { name: "Lizard", image: kwImg("lizard,gecko", 23) },
-  { name: "Rat", image: kwImg("rat,rodent", 24) },
-  { name: "Mosquito", image: kwImg("mosquito,insect", 25) },
-  { name: "Ant", image: kwImg("ant,insect", 26) },
-  { name: "Spider", image: kwImg("spider,web", 27) },
-  { name: "Termite", image: kwImg("termite,insect", 28) },
+  { name: "Cockroach", image: "https://images.unsplash.com/photo-1611773236409-f3ee161007a1?auto=format&fit=crop&w=400&q=70" },
+  { name: "Bed Bug", image: "https://images.unsplash.com/photo-1729294428628-6d97177fd053?auto=format&fit=crop&w=400&q=70" },
+  { name: "Lizard", image: "https://images.unsplash.com/photo-1513039763578-cf2c1c5f8750?auto=format&fit=crop&w=400&q=70" },
+  { name: "Rat", image: "https://images.unsplash.com/photo-1718345641213-80cfe1424084?auto=format&fit=crop&w=400&q=70" },
+  { name: "Mosquito", image: "https://images.unsplash.com/photo-1707943768453-7850f916ebde?auto=format&fit=crop&w=400&q=70" },
+  { name: "Ant", image: "https://images.unsplash.com/photo-1596507457709-34bf5fd86f1a?auto=format&fit=crop&w=400&q=70" },
+  { name: "Spider", image: "https://images.unsplash.com/photo-1544717455-4cf7ad978978?auto=format&fit=crop&w=400&q=70" },
+  { name: "Termite", image: "https://images.unsplash.com/photo-1612960891902-b525d250aa89?auto=format&fit=crop&w=400&q=70" },
 ];
 
 export const trustBadges = [
